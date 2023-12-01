@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rearrange Names</title>
+  <style type="text/css">
+    .list-names {
+      color: #999;
+      font-family: sans-serif;
+      font-size: 3em;
+      font-weight: bold;
+      list-style: none;
+      text-align: center;
+    }
+
+    li:first-child {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // Get the names from the query string
+    let urlParams = new URLSearchParams(window.location.search);
+    let names = urlParams.get('names').split(',');
+
+    // Print the names as an HTML list
+    let list = document.createElement('ul');
+        list.classList.add('list-names');
+
+    document.body.appendChild(list);
+
+    // Function to rearrange and display the names
+    function rearrangeNames() {
+      // Rearrange the names randomly
+      names.sort(() => Math.random() - 0.5);
+
+      // Update the HTML list
+      while (list.firstChild) {
+        list.removeChild(list.firstChild);
+      }
+      names.forEach((name) => {
+        let element = document.createElement('li');
+        element.textContent = name;
+        list.appendChild(element);
+      });
+    }
+
+    // Create a button to rearrange the names
+    // let button = document.createElement('button');
+    // button.textContent = 'Rearrange the names';
+    // button.addEventListener('click', rearrangeNames);
+    // document.body.appendChild(button);
+
+    // Rearrange the names when the page loads
+    rearrangeNames();
+  </script>
+</body>
+</html>
